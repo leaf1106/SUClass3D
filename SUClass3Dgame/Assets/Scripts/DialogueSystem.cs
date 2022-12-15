@@ -14,6 +14,8 @@ namespace Leaf
         private float dialogueIntervalTime = 0.1f;
         [SerializeField, Header("開頭對話")]
         private DialogueData dialogueOpening;
+        [SerializeField, Header("對話按鍵")]
+        private KeyCode dialogueKey = KeyCode.V;
 
         private WaitForSeconds dialogueInterval => new WaitForSeconds(dialogueIntervalTime);
         private CanvasGroup groupDialogue;
@@ -39,33 +41,62 @@ namespace Leaf
         /// <summary>
         /// 淡入淡出群組物件
         /// </summary>
-        private IEnumerator FadeGroup()
+        private IEnumerator FadeGroup(bool FadeIn = true)
         {
+            //三元運算子 ? :
+            //語法 :
+            //布林值 ? 布林值為 true : 布林值為 false ;
+            //true ? 1 : 10; 結果為 1 
+            //false ? 1 : 10; 結果為 10
+
+            float increase = FadeIn ? +0.1f : -0.1f;
+
             for (int i = 0; i < 10; i++)
             {
-                groupDialogue.alpha += 0.1f;
+                groupDialogue.alpha += increase;
                 yield return new WaitForSeconds(0.04f);
             }
         }
 
+        /// <summary>
+        /// 打字效果
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator TypeEffect()
         {
             textName.text = dialogueOpening.dialogueName;
-            textContents.text = "";
+            
 
-            string dialogue = dialogueOpening.dialogueContents[0];
-
-            for (int i = 0; i < dialogue.Length; i++)
+            for (int j = 0; j < dialogueOpening.dialogueContents.Length; j++)
             {
-                textContents.text += dialogue[i];
-                yield return dialogueInterval;
+                textContents.text = "";
+                goTriangle.SetActive(false);
 
-                
+                string dialogue = dialogueOpening.dialogueContents[j];
+
+                for (int i = 0; i < dialogue.Length; i++)
+                {
+                    textContents.text += dialogue[i];
+                    yield return dialogueInterval;
+
+
+                }
+
+                goTriangle.SetActive(true);
+
+                // 如果 玩家 還沒按下 就等待
+                while (!Input.GetKeyDown(dialogueKey))
+                {
+                    yield return null;
+                }
+
+                print("<color=#993300>玩家按下按鍵 !</color>");
             }
 
-            goTriangle.SetActive(true);
-
+            StartCoroutine(FadeGroup(false));
         }
+
+
 
     }
 

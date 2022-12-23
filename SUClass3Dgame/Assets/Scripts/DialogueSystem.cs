@@ -6,7 +6,6 @@ using UnityEngine.Events;
 
 namespace Leaf
 {
-    
     /// <summary>
     /// 對話系統
     /// </summary>
@@ -46,7 +45,12 @@ namespace Leaf
             StartDialogue(dialogueOpening);
         }
         #endregion
-
+        
+        /// <summary>
+        /// 開始對話
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="_onDialogueFinish">對話結束後的事件，可以空值</param>
         public void StartDialogue(DialogueData data, UnityEvent _onDialogueFinish = null)
         {
             playerInput.enabled = false;         //關閉 玩家輸入元件
@@ -113,7 +117,9 @@ namespace Leaf
             StartCoroutine(FadeGroup(false));
 
             playerInput.enabled = true;      // 開啟 玩家輸入元件
-            onDialogueFinish.Invoke();      // 對話事件結束，呼叫() ;
+            
+            // ?. 當 onDialogueFinish 沒有值時就不執行
+            onDialogueFinish?.Invoke();      // 對話事件結束，呼叫() ;
         }
 
 

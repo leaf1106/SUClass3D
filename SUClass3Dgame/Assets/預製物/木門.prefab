@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5860144814156541004}
   - component: {fileID: 5860144814157508236}
   - component: {fileID: 6533947817659875215}
+  - component: {fileID: 2787191687560410713}
+  - component: {fileID: 2787191687560410714}
   m_Layer: 0
   m_Name: "\u6728\u9580"
   m_TagString: Untagged
@@ -26,9 +28,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860144814155509836}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.0098681, y: 0.00439848, z: -2.8980079}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,6 +55,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -96,3 +100,34 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 1fed90e8722c1334d9b51e0b56f26e4e, type: 3}
+--- !u!65 &2787191687560410713
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860144814155509836}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: -0.7}
+--- !u!114 &2787191687560410714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860144814155509836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd86f82d7cec0b4f84dedb52425c57f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataDialogue: {fileID: 11400000, guid: eb2272d42ebca984499501cbc0a55167, type: 2}
+  onDialogueFinish:
+    m_PersistentCalls:
+      m_Calls: []
+  propActive: {fileID: 0}
+  dataDialogueActive: {fileID: 11400000, guid: edd13c4d685eea547941993afa7388a7, type: 2}
